@@ -1,0 +1,60 @@
+﻿@page "/"
+@page "/employee-grid"
+
+<div class="container">
+
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-md-6">
+
+            <button title="Add" @onclick="AddRow" class="btn btn-success">
+                Add Employee
+            </button>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="search">
+                <input type="text" class="form-control" @bind-value="searchText" placeholder="Search Rows">
+                <button class="btn btn-primary" @onclick="SearchEmployeeAsync">Search</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    <div class="table-responsive">
+        <table class="table align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var e in employees)
+                {
+                    <tr>
+                        <td>@e.FullName</td>
+                        <td>@e.Email</td>
+                        <td>@e.EDateOfBirth</td>
+                        <td>@e.EDepartment</td>
+                        <td>
+                        <button title="Edit" @onclick="@(() => EditEmployeeAsync(@e.Id))" class="btn btn-primary">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                        <button title="Detail" @onclick="@(() => EmployeeDetail(@e.Id))" class="btn btn-info">
+                            <i class="bi bi-info-square"></i>
+                        </button>
+                        <button title="Delete" @onclick="@(() => DeleteEmployeeAsync(@e.Id))" class="btn btn-danger">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

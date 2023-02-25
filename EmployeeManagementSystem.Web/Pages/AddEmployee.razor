@@ -1,0 +1,35 @@
+﻿@page "/add-employee"
+@page "/edit-employee/{id}"
+
+@if(id is not null) {
+    <h3>Edit Employee</h3>
+}
+else
+{
+    <h3>Add Employee</h3>
+}
+<EditForm Model=@Employee OnSubmit=@AddOrUpdateEmployeeAsync>
+    <div class="row">
+        <div class="col-6">
+            <label for="FullName">Name</label>
+            <InputText @bind-Value=Employee.FullName class="form-control" id="FullName" />
+        </div>
+        <div class="col-6">
+            <label for="Email">Email</label>
+            <InputText @bind-Value=Employee.Email class="form-control" id="Email" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label for="EDateOfBirth">Date of Birth</label>
+            <InputDate @bind-Value=Employee.EDateOfBirth class="form-control" id="EDateOfBirth" />
+        </div>
+        <div class="col-6">
+            <label for="EDepartment">Department</label>
+            <InputText @bind-Value=Employee.EDepartment class="form-control" id="EDepartment" />
+        </div>
+    </div>
+
+    <br />
+    <input type="submit" class="btn btn-primary" value="Save" />
+</EditForm>
